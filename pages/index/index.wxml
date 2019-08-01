@@ -1,0 +1,29 @@
+<view>
+  <!-- 搜索栏 -->
+  <Search/>
+  <!-- 轮播图组件 -->
+  <Swiper image="{{img}}" />
+  <!-- 导航部分 -->
+  <view class="navigrtion">
+    <navigator wx:for="{{navgon}}" wx:key="{{name}}">
+      <image mode="widthFix" src="{{item.image_src}}"></image>
+    </navigator>
+  </view>
+  <!-- 楼层部分 -->
+  <view wx:for="{{newtower}}" wx:key="{{name}}">
+    <view class="tower-image">
+      <image mode="widthFix" src="{{item.floor_title.image_src}}"></image>
+    </view>
+    <view class="tower-fuZhuang clearfix">
+      <navigator 
+      wx:for="{{item.product_list}}" 
+      wx:for-item="item1" 
+      wx:for-index="index1" 
+      wx:key="{{name}}" 
+      class="tower-zhuTu"
+      >
+        <image mode="{{index1===0?'widthFix':'scaleToFill'}}" src="{{item1.image_src}}"></image>
+      </navigator>
+    </view>
+  </view>
+</view>

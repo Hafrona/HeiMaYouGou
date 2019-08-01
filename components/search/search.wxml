@@ -1,0 +1,5 @@
+<view class="seach-head">
+  <navigator url="/pages/search/search">
+    <input placeholder="搜索" disabled="true"></input>
+  </navigator>
+</view>

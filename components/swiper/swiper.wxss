@@ -1,0 +1,7 @@
+.lunBo-item>image{
+  width: 100%;
+}
+.lunBo{
+  /* 原图的宽 / 原图的高 = 变化后的宽 / 变化后的高 */
+  height:340rpx;
+}

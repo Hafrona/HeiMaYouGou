@@ -1,0 +1,29 @@
+<view>
+  <!-- 搜索栏 -->
+  <Search />
+  <!-- 分类部分 -->
+  <!-- 左边部分 -->
+  <view class="classify">
+    <scroll-view class="classify-left" scroll-y>
+      <view class="classify-left-name {{index===currentIndex?'activeBgc':''}}" wx:for="{{leftMenuList}}" wx:key="{{index}}" bindtap="fenLeiDianji" data-index="{{index}}">
+        <text class="{{index===currentIndex?'active':''}}">{{item.cat_name}}</text>
+      </view>
+    </scroll-view>
+    <!-- 右边部分 -->
+    <scroll-view class="classify-right" scroll-y>
+      <view class="classify-right-name" wx:for="{{rightGoodsList}}" wx:key="{{cat_id}}">
+        <view class="cat-name">
+          <text class="title-XieGang">/</text>
+          <text class="title">{{item.cat_name}}</text>
+          <text class="title-XieGang">/</text>
+        </view>
+        <view class="classify-item">
+          <navigator class="class-children" wx:for="{{item.children}}" wx:key="{{cat_id}}" wx:for-item="item1" wx:for-index="index1">
+            <image mode="widthFix" src="{{item1.cat_icon}}"></image>
+            <text>{{item1.cat_name}}</text>
+          </navigator>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,13 @@
+ page{
+   --theTheme:#e82e21;
+ }
+ page,view,text,swiper,swiper-item,image,navigator,input,button{
+   box-sizing: border-box;
+ }
+ .clearfix::after{
+   content: "";
+   display: block;
+   height:0;
+   clear:both;
+   visibility: hidden;
+ }

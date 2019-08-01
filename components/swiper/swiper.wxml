@@ -1,0 +1,7 @@
+<view>
+  <swiper indicator-dots="true" class="lunBo" autoplay="true" interval="3000" circular="true">
+    <swiper-item wx:for="{{image}}" wx:key="index" class="lunBo-item">
+      <image mode="widthFix" src="{{item.image_src}}"></image>
+    </swiper-item>
+  </swiper>
+</view>

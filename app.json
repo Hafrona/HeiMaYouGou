@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/goods_list/goods_list",
+    "pages/goods_detail/goods_detail",
+    "pages/cart/cart",
+    "pages/collect/collect",
+    "pages/order/order",
+    "pages/search/search",
+    "pages/user/user",
+    "pages/feedback/feedback",
+    "pages/login/login",
+    "pages/auth/auth",
+    "pages/pay/pay"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#e82e21",
+    "navigationBarTitleText": "米奇不妙屋",
+    "navigationBarTextStyle": "white"
+    
+  },
+  "tabBar": {
+    "color":"#666",
+    "selectedColor":"#ff2d4a",
+    "backgroundColor":"#fafafa",
+    "borderStyle":"black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/tabs/home.png",
+        "selectedIconPath": "/static/tabs/home-o.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "/static/tabs/category.png",
+        "selectedIconPath": "/static/tabs/category-o.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/static/tabs/cart.png",
+        "selectedIconPath": "/static/tabs/cart-o.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "/static/tabs/my.png",
+        "selectedIconPath": "/static/tabs/my-o.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

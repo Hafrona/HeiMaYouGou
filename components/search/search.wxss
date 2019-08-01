@@ -1,0 +1,10 @@
+.seach-head{
+  background-color: #e82e21;
+  padding: 10rpx 10rpx 15rpx 10rpx;
+}
+.seach-head>navigator>input{
+  height:60rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  text-align: center;
+}
