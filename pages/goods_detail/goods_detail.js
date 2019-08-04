@@ -46,10 +46,11 @@ Page({
     }else{
       cart[this.GoodsObj.goods_id] = this.GoodsObj;
       cart[this.GoodsObj.goods_id].num = 1
+      cart[this.GoodsObj.goods_id].checked =true;
     }
-    wx.setStorageSync("cart", cart);
+    setStorageCart(cart);
       // 4 弹出成功的提示
-    setStorageCart({
+    wx.showToast({
       title: '购买成功',
       icon: 'success',
       //  mask：true 但是用户 点击 按钮的时候没有反应！！
