@@ -1,0 +1,121 @@
+@import "../../app.wxss";
+.goodsDetail{
+  padding:0 10rpx;
+}
+.swiper-lunBo{
+    swiper{
+      height:57vw;
+      text-align: center;
+      image{
+        width: 50%;
+      }
+    }
+}
+.goodsDetail-content{
+  margin-bottom: 10rpx;
+  .content-text{
+    padding:10rpx 10rpx;
+    text{
+      color:var(--theTheme);
+      font-size: 34rpx;
+      font-weight: 600;
+    }
+  }
+  .content{
+    display: flex;
+    .content-name{
+      flex:4;
+      display: -webkit-box;
+      -webkit-box-orient:vertical;
+      overflow: hidden;
+      -webkit-line-clamp:2;
+      color: #000;
+      padding-right:20rpx;
+      text{
+        font-size: 28rpx;
+      }
+    }
+    .content-icon{
+      flex:1;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      color:#666;
+      border-left:4rpx #666 solid;
+      text{
+        margin-bottom: 8rpx;
+        font-size: 40rpx;
+      }
+      .icon_name{
+        font-size: 26rpx;
+      }
+    }
+  }
+}
+.graphic{
+  .graphic-details{
+    border-top:6rpx rgb(247, 212, 212) solid;
+    border-bottom:6rpx rgb(247, 212, 212) solid;
+    margin-bottom: 6rpx;
+    text{
+      display: block;
+      font-size: 36rpx;
+      color:var(--theTheme);
+      font-weight: 600;
+      padding:20rpx 10rpx;
+    }
+  }
+}
+.toolbar{
+  height:90rpx;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  .toolbar-service{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    flex: 1;
+    padding: 6rpx 0;
+    .service{
+      font-size: 28rpx;
+      font-weight: 500;
+    }
+    button{
+      position: absolute;
+      top: 0;
+      left:0;
+      width: 100%;
+      height:100%;
+      opacity: 0;
+    }
+  }
+  .Gouw{
+    flex: 3;
+    display: flex;
+    font-size: 32rpx;
+    color:#fff;
+    font-weight: 500;
+    .toolbar-plusShoppingTrolley{
+      display: flex;
+      background-color: #ffa500;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      text{
+        display: block
+      }
+    } 
+    .toolbar-buy{
+      display: flex;
+      flex: 1;
+      background-color: var(--theTheme);
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

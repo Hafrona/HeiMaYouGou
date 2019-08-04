@@ -1,0 +1,38 @@
+page {
+  --theTheme: #e82e21;
+}
+page,
+view,
+text,
+swiper,
+swiper-item,
+image,
+navigator,
+input,
+button {
+  box-sizing: border-box;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.listTab {
+  display: flex;
+}
+.listTab .listTab-qh {
+  display: block;
+  width: 33.33%;
+  display: flex;
+  justify-content: center;
+  padding: 20rpx 0;
+  font-size: 26rpx;
+  box-sizing: 0;
+  border-bottom: 2rpx #ccc solid;
+}
+.actave {
+  border-bottom: 4rpx var(--theTheme) solid !important;
+  color: var(--theTheme);
+}

@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "Search": "/components/search/search",
+    "Listtab":"/components/listTab/listTab"
+  },
+  "navigationBarTitleText": "商品列表",
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle":"dark",
+  "backgroundColor":"#eb4450"
 }

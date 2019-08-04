@@ -1,66 +1,54 @@
-// pages/goods_list/goods_list.js
+import { request } from "../../request/index.js";
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    goodsList: []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  //总页数
+  TotalPages: 1,
+  // 接口用的参数
+  QueryParams: {
+    // 搜索的关键字
+    query: "",
+    // 分类id
+    cid: "",
+    // 页码
+    pagenum: 1,
+    // 页容量
+    pagesize: 10
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onLoad(options) {
+    this.QueryParams.cid = options.cid;
+    this.getListData();
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  async getListData() {
+    const result = await request({ url: "/goods/search", data: this.QueryParams });
+    const { goods } = result.data.message;
+    const { total } = result.data.message;
+    this.TotalPages = Math.ceil(total / this.QueryParams.pagesize);
+    this.setData({
+      goodsList: [...this.data.goodsList,...goods]
+    });
+    wx.stopPullDownRefresh()
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  //用户上拉触底事件
+  onReachBottom() {
+    if (this.QueryParams.pagenum >= this.TotalPages) {
+      wx.showToast({
+        title: "没有下一页数据了",
+        icon: "none"
+      });
+    } else {
+      this.QueryParams.pagenum++;
+      this.getListData();
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  //下拉刷星
+  onPullDownRefresh(){
+    this.QueryParams.pagenum = 1;
+    this.setData({
+      goodsList:[]
+    })
+    this.getListData();
   }
-})
+});

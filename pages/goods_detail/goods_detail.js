@@ -1,66 +1,59 @@
 // pages/goods_detail/goods_detail.js
+import {request} from "../../request/index.js"
+import regeneratorRuntime from '../../lib/runtime/runtime';
+import {getStorageCart ,setStorageCart } from "../../utils/storage.js";
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
+  data:{
+    pics:[],
+    goods:{}
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  GoodsObj: {},
+  onLoad(options){
+    this.getDetailData(options.goods_id)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  async getDetailData(goods_id){
+    const result = await request({url:"/goods/detail",data:{goods_id}})
+    const {message} = result.data
+    const { pics } = message
+    this.GoodsObj = message
+    this.setData({
+      pics:pics,
+      goods:{
+        goods_id : message.goods_id,
+        goods_name : message.goods_name,
+        goods_price : message.goods_price,
+        goods_introduce : message.goods_introduce.replace(/\.webp/g,'.jpg')
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  //点击轮播图预览图片
+  handlePreviewImage(e){
+    const { index } = e.currentTarget.dataset
+    const urls = this.data.pics.map( v =>{
+      return v.pics_big
+    })
+    const { pics_big_url } = this.data.pics[index]
+    wx.previewImage({
+      current: pics_big_url,
+      urls
+    });
+      
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  handleCartAdd(){
+    let cart = getStorageCart() || {};
+    if(cart[this.GoodsObj.goods_id]){
+      cart[this.GoodsObj.goods_id].num++;
+    }else{
+      cart[this.GoodsObj.goods_id] = this.GoodsObj;
+      cart[this.GoodsObj.goods_id].num = 1
+    }
+    wx.setStorageSync("cart", cart);
+      // 4 弹出成功的提示
+    setStorageCart({
+      title: '购买成功',
+      icon: 'success',
+      //  mask：true 但是用户 点击 按钮的时候没有反应！！
+      mask: true
+    });
   }
 })

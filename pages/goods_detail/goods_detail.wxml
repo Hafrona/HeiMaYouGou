@@ -1,2 +1,60 @@
-<!--pages/goods_detail/goods_detail.wxml-->
-<text>pages/goods_detail/goods_detail.wxml</text>
+<view class="goodsDetail">
+    <view class="swiper-lunBo">
+        <swiper indicator-dots="true" class="lunBo" autoplay="true" interval="3000" circular="true">
+            <swiper-item wx:for="{{pics}}" wx:key="index" class="lunBo-item" bindtap="handlePreviewImage" data-index="{{index}}">
+            <image mode="widthFix" src="{{item.pics_mid}}"></image>
+        </swiper-item>
+    </swiper>
+    </view>
+    <view class="goodsDetail-content">
+        <view class="c">
+            <text>￥{{goods.goods_price}}</text>
+        </view>
+        <view class="content">
+            <view class="content-name">
+                <text>{{goods.goods_name}}</text>
+            </view>
+            <view class="content-icon">
+                <text class="iconfont icon-shoucang"></text>
+                <view class="icon_name">收藏</view>
+            </view>
+        </view>
+    </view>
+    <view class="graphic">
+        <view class="graphic-details">
+            <text>图文详情</text>
+        </view>
+        <view class="graphic-content">
+            <rich-text class="" nodes="{{goods.goods_introduce}}">
+                
+            </rich-text>
+        </view>
+    </view>
+    <view class="toolbar">
+        <view class="toolbar-service">
+            <text class="iconfont icon-kefu"></text>
+            <view class="service">联系客服</view>
+            <button open-type="contact"></button>
+        </view>
+        <view class="toolbar-service">
+            <text class="iconfont icon-yixianshi-"></text>
+            <view class="service">分享</view>
+            <button open-type="share"></button>
+        </view>
+        <navigator class="toolbar-service" open-type="switchTab" url="/pages/cart/cart">
+            <text class="iconfont icon-gouwuche"></text>
+            <view class="service">购物车</view>
+        </navigator>
+        <view class="Gouw">
+            <view class="toolbar-plusShoppingTrolley" bindtap="handleCartAdd">
+                <text>加入购物车</text>
+            </view>
+            <view class="toolbar-buy">
+                <text>立即购买</text>
+            </view>
+        </view>
+    </view>
+</view>
+  
+  
+ 

@@ -1,1 +1,8 @@
-/* pages/cart/cart.wxss */
+.cart .cart-btn {
+  padding: 20rpx 0;
+  border-bottom: 20rpx #eeeeee solid;
+}
+.cart .cart-btn button {
+  width: 50%;
+  background-color: #f8f8f8;
+}

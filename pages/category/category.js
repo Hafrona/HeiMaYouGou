@@ -34,7 +34,7 @@ Page({
       
   },
   getClassifyData() {
-    request({ url:'https://api.zbztb.cn/api/public/v1/categories'})
+    request({ url:'/categories'})
       .then(classData =>{
         const { message } = classData.data;
         this.cates = message

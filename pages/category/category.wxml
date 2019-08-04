@@ -18,7 +18,13 @@
           <text class="title-XieGang">/</text>
         </view>
         <view class="classify-item">
-          <navigator class="class-children" wx:for="{{item.children}}" wx:key="{{cat_id}}" wx:for-item="item1" wx:for-index="index1">
+          <navigator class="class-children" 
+          wx:for="{{item.children}}" 
+          wx:key="{{cat_id}}" 
+          wx:for-item="item1" 
+          wx:for-index="index1"
+          url="/pages/goods_list/goods_list?cid={{item1.cat_id}}"
+          >
             <image mode="widthFix" src="{{item1.cat_icon}}"></image>
             <text>{{item1.cat_name}}</text>
           </navigator>

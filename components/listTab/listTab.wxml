@@ -1,0 +1,11 @@
+<view class="listTab">
+    <view class="listTab-qh {{index === activeIndex?'actave':''}}" 
+    wx:for="{{listTab}}" 
+    wx:key="{{index}}" 
+    bindtap="listDianji"
+    data-list="{{index}}"
+    >
+        <text class="listTab-text">{{item}}</text>
+    </view>
+</view>
+  
