@@ -72,3 +72,30 @@ export const showToast = ({content})=>{
           
     })
 }
+//获取用户登陆code
+export const login = ()=>{
+  return new Promise((resolve,reject)=>{
+    wx.login({
+      timeout:10000,
+      success: (result) => {
+        resolve(result)
+      }
+    });
+      
+  })
+}
+//调用支付功能
+export const requestPayment =(params)=>{
+  return new Promise((resolve,reject)=>{
+    wx.requestPayment({
+      ...params,
+      success: (result) => {
+        resolve(result)
+      },
+      fail: (err) => {
+        reject(err)
+      }
+    });
+      
+  })
+}

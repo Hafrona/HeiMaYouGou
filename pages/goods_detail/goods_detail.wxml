@@ -14,8 +14,8 @@
             <view class="content-name">
                 <text>{{goods.goods_name}}</text>
             </view>
-            <view class="content-icon">
-                <text class="iconfont icon-shoucang"></text>
+            <view class="content-icon" bindtap="shouChang">
+                <text class="iconfont {{isCollect?'icon-shoucang1':'icon-shoucang'}}"></text>
                 <view class="icon_name">收藏</view>
             </view>
         </view>

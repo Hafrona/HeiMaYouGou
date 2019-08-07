@@ -1,5 +1,5 @@
 <Search />
-<Listtab />
+<Listtab tabs="{{tabs}}"/>
 <view class="list-title">
     <navigator class="list-content" wx:for="{{goodsList}}" wx:key="{{goods_id}}" url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}">
         <view class="list-image">

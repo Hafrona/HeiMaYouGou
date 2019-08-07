@@ -2,7 +2,12 @@ import { request } from "../../request/index.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   data: {
-    goodsList: []
+    goodsList: [],
+    tabs: [
+      { id: 0, title: "综合", isActive: true },
+      { id: 1, title: "销量", isActive: false },
+      { id: 2, title: "价格", isActive: false }
+    ],
   },
   //总页数
   TotalPages: 1,

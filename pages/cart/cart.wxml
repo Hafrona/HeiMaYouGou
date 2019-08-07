@@ -54,7 +54,7 @@
             <view class="price-total-Yunf">包含运费</view>
         </view>
         <view class="price-over" bindtap="moenyover">
-            结算(1)
+            结算({{totalNum}})
         </view>  
     </view>
 </view>

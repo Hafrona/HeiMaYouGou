@@ -1,0 +1,143 @@
+@import "../../app.wxss";
+page {
+  background-color: #edece8;
+}
+.user {
+  position: relative;
+  //头像部分
+  .user-name {
+    position: relative;
+    .user-name-bgc {
+      height: 45vh;
+      overflow: hidden;
+      image {
+        width: 100vw;
+        filter: blur(12rpx);
+      }
+    }
+    .user-name-image {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      .user-name-image-header {
+        width: 180rpx;
+        height: 180rpx;
+        image {
+          width: 100%;
+          border-radius: 50%;
+        }
+      }
+      .user-name-image-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+      }
+    }
+  }
+  .user-content {
+    position: relative;
+    .user-content-history {
+      position: absolute;
+      width: 95vw;
+      top: -45rpx;
+      left: 50%;
+      transform: translateX(-50%);
+      .history {
+        margin-bottom: 25rpx;
+        .history-nav {
+          display: flex;
+          background-color: #fff;
+          padding: 10rpx 15rpx;
+          .navTo {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            font-size: 26rpx;
+            text {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              &:nth-child(1) {
+                color: #e82e21;
+              }
+            }
+          }
+        }
+      }
+      .myorder {
+        margin-bottom: 15rpx;
+        .myorder-title {
+          display: flex;
+          align-items: center;
+          padding: 20rpx 10rpx;
+          background-color: #fff;
+          margin-bottom: 5rpx;
+        }
+        .order_item_content {
+          padding: 15rpx 5rpx;
+          background-color: #fff;
+          display: flex;
+          navigator {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .iconfont {
+              color: var(--theTheme);
+            }
+            .order_name {
+              font-size: 26rpx;
+            }
+          }
+        }
+      }
+      .user-afterSale {
+        .user-afterSale-site {
+          padding: 20rpx 20rpx;
+          background-color: #fff;
+          margin-bottom: 15rpx;
+          navigator{
+            display: flex;
+            justify-content: space-between;
+            text{
+              color:#d1d0d3;
+            }
+          }
+        }
+        .user-afterSale-Kefu{
+          padding: 20rpx 20rpx;
+          background-color: #fff;
+          margin-bottom: 4rpx;
+          &:nth-child(4){
+            margin-bottom: 20rpx;
+          }
+          navigator{
+            display: flex;
+            justify-content: space-between;
+            text{
+              color:#d1d0d3;
+            }
+            .kefu{
+              color:black;
+            }
+          }
+        }
+        .user-afterSale-copy{
+          padding: 20rpx 20rpx;
+          background-color: #fff;
+          margin-bottom: 100rpx;
+        }
+      }
+    }
+  }
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}

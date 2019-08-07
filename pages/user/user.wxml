@@ -1,2 +1,81 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view class="user">
+    <view class="user-name">
+        <view class="user-name-bgc">
+            <image src="{{userInfo.avatarUrl}}"/>
+        </view>
+        <view class="user-name-image">
+            <view class="user-name-image-header">
+                 <image src="{{userInfo.avatarUrl}}" mode="widthFix"/>
+            </view>
+            <view class="user-name-image-text">
+                <text class="" selectable="false" space="false" decode="false">
+                    胖达滚滚
+                </text>
+            </view>
+        </view>
+    </view>
+    <view class="user-content clearfix">
+        <view class="user-content-history">
+            <view class="history">
+                <view class="history-nav">
+                    <navigator class="navTo" wx:for="{{history}}" wx:key="{{index}}">
+                        <text>0</text>
+                        <text>{{item.name}}</text>
+                    </navigator>
+                </view>
+            </view>
+            <view class="myorder">
+                <view class="myorder-title" hover-class="none" hover-stop-propagation="false">
+                    <text>我的订单</text>
+                </view>
+                <view class="order_item_content">
+                    <navigator url="/pages/order/order?type=1">
+                        <text class="iconfont icon-ding_dan"></text>
+                        <view class="order_name">全部订单</view>
+                    </navigator>
+                    <navigator url="/pages/order/order?type=2">
+                      <text class="order_icon iconfont icon-fukuantongzhi"></text>
+                      <view class="order_name">待付款</view>
+                    </navigator>
+                    <navigator url="/pages/order/order?type=3">
+                      <text class="order_icon iconfont icon-receipt-address"></text>
+                      <view class="order_name">待发货</view>
+                    </navigator>
+                    <navigator url="/pages/order/order?type=4">
+                      <text class="order_icon iconfont icon-tuihuotuikuan_dianpu"></text>
+                      <view class="order_name">退款/退货</view>
+                    </navigator>
+                </view>
+            </view>
+            <view class="user-afterSale">
+                <view class="user-afterSale-site">
+                    <navigator>
+                        收获地址管理
+                        <text decode="{{true}}">&gt;</text>
+                    </navigator>
+                </view>
+                <view class="user-afterSale-Kefu">
+                    <navigator>
+                        联系客服
+                        <text class="kefu">400-618-4000</text>
+                    </navigator>
+                </view>
+                <view class="user-afterSale-Kefu">
+                    <navigator>
+                        意见反馈
+                        <text decode="{{true}}">&gt;</text>
+                    </navigator>
+                </view>
+                <view class="user-afterSale-Kefu">
+                    <navigator>
+                        关于我们
+                        <text decode="{{true}}">&gt;</text>
+                    </navigator>
+                </view>
+                 <view class="user-afterSale-copy">
+                    把应用推荐给其他人
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

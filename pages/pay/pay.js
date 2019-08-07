@@ -1,31 +1,21 @@
-import { getSetting, chooseAddress, openSetting,showModal,showToast } from "../../utils/asyncWx.js";
+import {
+  getSetting,
+  chooseAddress,
+  openSetting,
+  showModal,
+  showToast,
+  requestPayment
+} from "../../utils/asyncWx.js";
 import regeneratorRuntime from "../../lib/runtime/runtime";
+import { request } from "../../request/index.js";
 Page({
   data: {
     address: {},
     cart: {},
     // 总价格
     totalPrice: 0,
-    // 总数量 勾选了的中数量
-    totalNum: 0,
     // 购物车有没有商品
     hasGoods: false
-  },
-  async handleChooseAddress() {
-    //获取用户信息
-    const res1 = await getSetting();
-    const scopeAddress = res1.authSetting["scope.address"];
-    if (scopeAddress === true || scopeAddress === undefined) {
-      //直接调用获取用户的收获地址
-    } else {
-      //先打开授权页面
-      await openSetting();
-    }
-    const res2 = await chooseAddress();
-    // 存入到本地存储中
-    res2.all =
-      res2.provinceName + res2.cityName + res2.countyName + res2.detailInfo;
-    wx.setStorageSync("address", res2);
   },
   onShow() {
     const address = wx.getStorageSync("address");
@@ -38,73 +28,55 @@ Page({
   setCart(cart) {
     let cartArr = Object.values(cart);
     // 2 计算总的价格
-    let isAllChecked = true;
-    // 2 计算总的价格
     let totalPrice = 0;
     // 3 计算 要购买的总数量
     let totalNum = 0;
     cartArr.forEach(v => {
-      if (v.checked) {
-        // 选中了
-        totalPrice += v.num * v.goods_price;
-        totalNum += v.num;
-      } else {
-        isAllChecked = false;
-      }
+      totalPrice += v.num * v.goods_price;
+      totalNum += v.num;
     });
-    // 判断购物车中有没有数据
-    isAllChecked = cartArr.length === 0 ? false : isAllChecked;
-    // 判断购物车内有没有商品
-    const hasGoods = cartArr.length ? true : false;
-    this.setData({ cart, isAllChecked, totalPrice, totalNum, hasGoods });
+    this.setData({ cart, totalPrice, totalNum });
     wx.setStorageSync("cart", cart);
   },
-  //全选
-  handleCartAllCheck() {
-    let { isAllChecked, cart } = this.data;
-    isAllChecked = !isAllChecked;
-    for (let key in cart) {
-      // 判断该属性是不是对象自己
-      if (cart.hasOwnProperty(key)) {
-        cart[key].checked = isAllChecked;
-      }
-    }
-    // 4 把cart传入到setCart函数即可
-    this.setCart(cart);
-  },
-  //复选框
-  shopcheck(e){
-    const { id } = e.currentTarget.dataset
-    const { cart } = this.data
-    cart[id].checked = !cart[id].checked
-    this.setCart(cart)
-  },
-  //编辑商品数量
-  async handleCartNumEdit(e){
-    const { id, num } = e.currentTarget.dataset
-    const { cart } = this.data
-    if(cart[id].num === 1 && num === -1){
-      let res = await showModal({content:"您确定要删除吗"})
-      if(res.confirm){
-        delete cart[id]
-        this.setCart(cart)
-      }
-    }else{
-      cart[id].num += num
-      this.setCart(cart)
-    }
-  },
-  //结算
-  async moenyover(){
-    //收获地址
-    const { address,totalNum} = this.data
-    if(!address.all){
-      await showToast({content:"请选择收获地址"})
-    }else if(totalNum === 0){
-      await showToast({content:"请选择要购买的商品"})
-    }else{
+  //支付
+  async handleOrderPay(){
+    const cart = this.data.cart
+    let token = wx.getStorageSync("token")
+    // 订单总价格
+    let order_price = this.data.totalPrice;
+    if(!token){
       wx.navigateTo({
-        url: '/pages/pay/pay'
+        url: '/pages/auth/auth'
+      });
+    }else{
+      let header = {Authorization:token}
+      const consignee_addr = this.data.address.all
+      let goods = [];
+      for(const key in cart){
+        if(cart.hasOwnProperty(key)){
+          if (cart[key].checked){
+            goods.push({
+              goods_id: cart[key].goods_id,
+              goods_number: cart[key].num,
+              goods_price: cart[key].goods_price,
+            })
+          }
+        }
+      }
+      let orderParams = {order_price,consignee_addr,goods}
+      //创建订单，拿到订单编号
+      const mina = await request({url:"/my/orders/create",method:"post",data:orderParams,header:header})
+      const { order_number } = mina.data.message;
+      //获取支付参数
+      const contPay = await request({url:"/my/orders/req_unifiedorder",header:header,data:{order_number},method:"post"})
+      const { pay } = contPay.data.message;
+      const res = await requestPayment(pay);
+      // 6 查询一下我们的第三方的服务里面的订单状态 也会成功 
+      const Chaxun = await request({url:"/my/orders/chkOrder",header:header,data:{order_number},method:"post"})
+      await showToast({content:"支付成功"})
+      // 7 订单页面 
+      wx.navigateTo({
+        url: '/pages/order/order'
       });
     }
   }

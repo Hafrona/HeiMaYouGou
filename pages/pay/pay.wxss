@@ -133,14 +133,14 @@ button {
 .cart .cart-content .cart-content-name .content .content-mony .content-mony-Jisuan view {
   width: 40rpx;
   height: 40rpx;
-  border: 2rpx #666 solid;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.cart .cart-content .cart-content-name .content .content-mony .content-mony-Jisuan view:nth-child(2) {
-  border: 0;
   margin: 0 10rpx;
+}
+.cart .cart-content .cart-content-name .content .content-mony .content-mony-Jisuan view text {
+  color: #999;
+  margin-right: 10rpx;
 }
 .cart .price {
   position: fixed;

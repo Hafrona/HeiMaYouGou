@@ -13,7 +13,7 @@
     </view>
     <view class="cart-content">
         <view class="cart-content-title">
-            优购生活馆
+            待支付
         </view>
         <view class="cart-content-name" wx:for="{{cart}}" wx:for-index="key" wx:for-item="value" wx:key="value">
             <view class="content-image">
@@ -26,9 +26,7 @@
                 <view class="content-mony">
                     <text>￥{{value.goods_price}}</text>
                     <view class="content-mony-Jisuan">
-                        <view bindtap="handleCartNumEdit" data-num="{{-1}}" data-id="{{value.goods_id}}">-</view>
-                        <view>{{value.num}}</view>
-                        <view bindtap="handleCartNumEdit" data-num="{{1}}" data-id="{{value.goods_id}}">+</view>
+                        <view><text>x</text>{{value.num}}</view>
                     </view>
                 </view>
             </view>
@@ -42,8 +40,8 @@
             </view>
             <view class="price-total-Yunf">包含运费</view>
         </view>
-        <view class="price-over" bindtap="moenyover">
-            结算(1)
+        <view class="price-over" bindtap="handleOrderPay">
+            支付({{totalNum}})
         </view>  
     </view>
 </view>
